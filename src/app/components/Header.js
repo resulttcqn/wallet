@@ -18,11 +18,11 @@ const Header = () => {
 
   const menuItems = [
     { name: "코인 입출금", path: "/exchange" },
-    { name: "투자내역", path: "/investments" },
-    { name: "코인동향", path: "/trends" },
-    { name: "서비스+", path: "/services" },
+    // { name: "투자내역", path: "/investments" },
+    // { name: "코인동향", path: "/trends" },
+    // { name: "서비스+", path: "/services" },
     { name: "고객센터", path: "/support" },
-    { name: "NFT", path: "/nft" },
+    // { name: "NFT", path: "/nft" },
   ];
 
   // 로그인 상태에서 타이머 감소
