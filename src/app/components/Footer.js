@@ -103,12 +103,13 @@ const Footer = () => {
               고객센터 <span className="font-semibold text-gray-800">1588-5682</span> (평일 09:00~18:00 / 유료) | 
               금융사고 전담 <span className="font-semibold text-gray-800">1533-1111</span> (24시간 연중무휴 / 유료)
             </p> */}
-            {/* <p className="mt-1">
-              두나무 (주) | 서울특별시 서초구 강남대로 369, 15층 | 대표 이석우 | 사업자등록번호 119-86-54968
+
+            <p className="mt-1">
+              두나무 (주) | 서울특별시 서초구 강남대로 369, 15층 | 대표 송치민 | 사업자등록번호 119-86-54968
             </p>
             <p className="mt-1 text-gray-400">
               * 가상자산은 고위험 상품으로 투자금의 전부 또는 일부 손실을 초래할 수 있습니다.
-            </p> */}
+            </p>
           </div>
 
           <div className="flex space-x-4 mt-4 mb-2">
