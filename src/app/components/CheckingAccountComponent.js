@@ -57,7 +57,7 @@ const CheckingAccountComponent = ({ selectedCoin, setPaymentModalYn, userData, x
         <div>총 보유</div>
         <div>
           <p className="text-lg font-semibold">{userData.balance} {coinData.symbol}</p>
-          <p className="text-gray-500 text-right">≈ {userData.balance * xrpPrice} KRW</p>
+          <p className="text-gray-500 text-right">≈ {(userData.balance * xrpPrice).toLocaleString('ko-KR')} KRW</p>
         </div>
       </div>
       :
