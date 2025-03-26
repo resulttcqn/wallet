@@ -176,7 +176,7 @@ const PaymentComponent = ({setPaymentModalYn, handleTransactionClick, userData, 
                         <div className="space-y-2">
                         <dl className="flex items-center justify-between gap-4">
                             <dt className="text-base font-normal text-gray-500 ">출금금액</dt>
-                            <dd className="text-base font-medium text-gray-900 ">{sell}</dd>
+                            <dd className="text-base font-medium text-gray-900 ">{sell.toLocaleString('ko-KR')}</dd>
                         </dl>
 
                         <dl className="flex items-center justify-between gap-4">
@@ -197,7 +197,7 @@ const PaymentComponent = ({setPaymentModalYn, handleTransactionClick, userData, 
 
                         <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2">
                         <dt className="text-base font-bold text-gray-900 ">Total</dt>
-                        <dd className="text-base font-bold text-gray-900 ">{sell}KRW</dd>
+                        <dd className="text-base font-bold text-gray-900 ">{sell.toLocaleString('ko-KR')}KRW</dd>
                         </dl>
                     </div>
 
