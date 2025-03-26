@@ -122,7 +122,7 @@ const CheckingAccountComponent = ({ selectedCoin, setPaymentModalYn, userData, x
                     <div className="font-bold text-green-500">
                       입금완료
                     </div>
-                    <div className="text-xs text-gray-400">{`${userData.input_dt} XRP`} </div>
+                    <div className="text-xs text-gray-400">{`${userData.input_dt}`} </div>
                   </div>
                   <div className="text-black-700 font-bold">{userData.balance}</div>
                 </div>
