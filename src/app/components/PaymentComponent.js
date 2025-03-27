@@ -155,7 +155,10 @@ const PaymentComponent = ({setPaymentModalYn, handleTransactionClick, userData, 
 
                         <div className="col-span-2 sm:col-span-1">
                             <label htmlFor="card-number-input" className="mb-2 block text-sm font-medium text-gray-900"> 계좌번호* </label>
-                            <input onChange={(e) => setAccount(e.target.value)} type="text" id="card-number-input" className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pe-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="- 없이 입력하세요" pattern="^4[0-9]{12}(?:[0-9]{3})?$" required />
+                            <input onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, "");
+                                setAccount(value)
+                            }} value={account} type="text" id="card-number-input" className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pe-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="- 없이 입력하세요" pattern="^4[0-9]{12}(?:[0-9]{3})?$" required />
                         </div>
 
                         {/* Card Expiration (전체 그리드 차지) */}
