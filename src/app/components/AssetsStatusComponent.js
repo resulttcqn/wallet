@@ -77,12 +77,12 @@ const AssetsStatusComponent = ({ coins, coinClick, userData, xrpPrice}) => {
               <div className="flex items-center">
                 <Image src={asset.image} alt={asset.name} width={24} height={24} className="mr-2" />
                 <div>
-                  <div className="font-medium text-xs">{asset.name}</div>
-                  <div className="text-xs text-gray-500">{asset.symbol}</div>
+                  <div className=" text-xs font-bold text-blue-600">{asset.name}</div>
+                  <div className="text-xs text-gray-500 font-bold text-blue-600">{asset.symbol}</div>
                 </div>
               </div>
-              <div className="text-center text-xs">{asset.percentage}</div>
-              <div className="text-right text-xs">
+              <div className="text-center text-xs font-bold text-blue-600">{asset.percentage}</div>
+              <div className="text-right text-xs font-bold text-blue-600">
                 <div>{userData?.balance} {asset.symbol}</div>
               </div>
             </div>
