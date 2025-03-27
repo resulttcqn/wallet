@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 const Header = () => {
   const { user, logout } = useAuth();
-  const [timeLeft, setTimeLeft] = useState(179); // 2시간 59분 (179분)
+  const [timeLeft, setTimeLeft] = useState(0); // 2시간 59분 (179분)
   const pathname = usePathname(); 
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태
@@ -25,27 +25,63 @@ const Header = () => {
     // { name: "NFT", path: "/nft" },
   ];
 
-  // 로그인 상태에서 타이머 감소
   useEffect(() => {
+    if (user && user.last_sign_in_at) {
+      // 로그인 시간에서 현재까지 경과한 시간 계산
+      const loginTime = new Date(user.last_sign_in_at).getTime();
+      const currentTime = new Date().getTime();
+      const timeElapsed = (currentTime - loginTime) / 60000; // 분 단위로 변환
+      
+      const remainingTime = 179 - timeElapsed; // 3분에서 경과한 시간만큼 뺌
+      if (remainingTime > 0) {
+        setTimeLeft(Math.floor(remainingTime)); // 남은 시간을 설정
 
-    if (user) {
-      setTimeLeft(179); // 로그아웃 시 초기화
-      return;
+        // 1분마다 타이머 감소
+        const interval = setInterval(() => {
+          setTimeLeft((prevTime) => {
+            if (prevTime <= 1) {
+              clearInterval(interval);
+              logout(); // 3분 후 자동 로그아웃
+              return 0;
+            }
+            return prevTime - 1; // 1분씩 감소
+          });
+        }, 60000); // 1분(60,000ms)마다 감소
+
+        return () => clearInterval(interval); // 컴포넌트 언마운트 시 정리
+      } else {
+        logout(); // 남은 시간이 0 이하이면 즉시 로그아웃
+      }
     }
-    
-    const interval = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          logout(); // 시간이 다 되면 로그아웃
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 60000); // 1분(60,000ms)마다 감소
+  }, [user, logout]);
 
-    return () => clearInterval(interval); // 언마운트 시 정리
-  }, [user]);
+  // 로그인 상태에서 타이머 감소
+  // useEffect(() => {
+  //   console.log("######")
+  //   if (user) {
+  //     console.log(user)
+  //     console.log(user)
+  //     console.log(user)
+  //     console.log(user)
+  //     setTimeLeft(3); // 3시간을 분 단위로 설정 (3시간 = 180분)
+      
+  //     const interval = setInterval(() => {
+  //       setTimeLeft(prev => {
+  //         console.log("@@@@@@@@@@")
+  //         console.log("@@@@@@@@@@")
+  //         console.log("@@@@@@@@@@")
+  //         if (timeLeft <= 1) {
+  //           clearInterval(interval);
+  //           logout(); // 시간이 다 되면 로그아웃
+  //           return 0;
+  //         }
+  //         return prev - 1; // 1분씩 감소
+  //       });
+  //     }, 60000); // 1분(60,000ms)마다 감소
+  
+  //     return () => clearInterval(interval); // 언마운트 시 정리
+  //   }
+  // }, [user]);
 
   const handleLogout = () => {
     logout();
