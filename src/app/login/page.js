@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "../../contexts/AuthContext";
 import LogoHeader from "../components/signup/LogoHeader";
 
-const Login = () => {
+const Login = memo(() => {
     const [formData, setFormData] = useState({ id: "", password: "" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -37,8 +37,17 @@ const Login = () => {
         setLoading(false);
     };
 
+    useEffect(() => {
+
+        if(user?.approved) {
+            alert("해당 계정은 이미 로그인 상태입니다.")
+            router.push('/')
+        }
+    }, [router])
+
     return (
         <div className="w-full flex justify-center mb-20">
+
             
             <div className="p-8 rounded-lg w-128 ">
                 <LogoHeader/>
@@ -102,6 +111,6 @@ const Login = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Login;
