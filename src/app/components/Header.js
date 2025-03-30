@@ -139,7 +139,7 @@ const Header = () => {
             </nav>
           </div>
           <div className="flex space-x-4 text-sm lg:flex hidden">
-            {user ? 
+            {user?.approved ? 
               <>
                 <span className="font-bold flex justify-center items-center"><IoIosTimer className="mr-2"/>{Math.floor(timeLeft / 60)}시 {timeLeft % 60}분</span>
                 <div className="font-bold cursor-pointer hover:underline" onClick={handleLogout}>로그아웃</div>
