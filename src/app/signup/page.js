@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from "react";
+import { memo, useState , useEffect} from "react";
 import SignUpAgreement from "../components/signup/SignUpAgreement";
 import { useRouter } from "next/navigation";
 import LogoHeader from "../components/signup/LogoHeader";
 import SignUpForm from "../components/signup/SIgnUpForm";
 import Image from "next/image";
+import { useAuth } from "../../contexts/AuthContext";
 
 const SignUp = () => {
 
@@ -36,6 +37,6 @@ const SignUp = () => {
         </div>
         
     )
-} 
+}
 
 export default SignUp;
