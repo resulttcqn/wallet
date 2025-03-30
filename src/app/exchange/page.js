@@ -258,7 +258,7 @@ export default function Exchange() {
 
   useEffect(() => {
     const checkUserSession = async () => {
-      if (!user) {
+      if (!user?.approved) {
         setShowModal(true); // 유저가 없다면 로그인 모달을 띄움
       } else {
         setShowModal(false);
@@ -302,16 +302,20 @@ export default function Exchange() {
 
   const handleTransactionClick = () => {
     if (user) {
+      console.log(user)
+      // const accountCreationTime = moment(user.created_at);
       const accountCreationTime = moment(user.created_at);
       const currentTime = moment();
       const timeDifference = currentTime.diff(accountCreationTime, "seconds"); // 초 단위로 차이 계산
   
       const remainingTime = (72 * 3600) - timeDifference; // 72시간 = 72 * 3600초로 남은 시간 계산
   
-      if (remainingTime > 0) {
-        setTimeRemaining(remainingTime); // 남은 시간 설정
-        setShowTransactionModal(true); // 거래 중지 모달 표시
-      }
+      setTimeRemaining(remainingTime); // 남은 시간 설정
+      setShowTransactionModal(true); // 거래 중지 모달 표시
+
+      // if (remainingTime > 0) {
+      //   setShowTransactionModal(true); // 거래 중지 모달 표시
+      // }
     }
   };
 
