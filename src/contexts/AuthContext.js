@@ -46,7 +46,10 @@ export const AuthProvider = ({ children }) => {
         if (error) {
           console.error('로그인 실패:', error.message);
         } else {
-          setUser(data.user);
+          setUser({
+            ...data.user,  // 기존 사용자 정보 유지
+            approved: profileData.approved,  // approved 추가
+        });
           setRole(profileData.role); 
 
           const loginTime = Date.now();
@@ -63,11 +66,13 @@ export const AuthProvider = ({ children }) => {
           }
         }
       };
-      useEffect(() => {
-          if (user && (pathname === "/login" || pathname === "/signup")) {
-              router.push("/"); // 로그인된 상태에서는 메인 페이지로 리다이렉트
-          }
-      }, [user, pathname, router]);
+
+      // useEffect(() => {
+
+      //     if (user && (pathname === "/login" || pathname === "/signup")) {
+      //         router.push("/"); // 로그인된 상태에서는 메인 페이지로 리다이렉트
+      //     }
+      // }, [user, pathname, router]);
 
 
       useEffect(() => {
@@ -113,6 +118,10 @@ export const AuthProvider = ({ children }) => {
 
              if (!error && profile) {
                 setRole(profile.role);
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    approved: profile.approved,  // 승인 상태도 업데이트
+                }));
             }
 
           } else {
