@@ -37,14 +37,6 @@ const Login = memo(() => {
         setLoading(false);
     };
 
-    useEffect(() => {
-
-        if(user?.approved) {
-            alert("해당 계정은 이미 로그인 상태입니다.")
-            router.push('/')
-        }
-    }, [router])
-
     return (
         <div className="w-full flex justify-center mb-20">
 
@@ -112,5 +104,7 @@ const Login = memo(() => {
         </div>
     );
 });
+
+Login.displayName = "Login";
 
 export default Login;
